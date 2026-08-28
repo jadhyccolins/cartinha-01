@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <base href="./">
+    <title>Feliz Aniversário, Meu Amor 💙</title>
+    <script>
+        var senha = prompt("Digite a senha para acessar o site:");
+        if (senha !== "0509") {
+            alert("Senha incorreta!");
+            window.location.href = "about:blank";
+        }
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Georgia, 'Times New Roman', serif;
+        }
+
+        body {
+            background-color: #e6f2ff;
+            min-height: 100vh;
+            transition: all 0.5s ease;
+        }
+
+        /* SOMENTE a palavra "amo" em azul mirtilo 🫐 */
+        .palavra-amo {
+            color: #4a90e2;
+            font-weight: 500;
+        }
+
+        .tela-inicio {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #e6f2ff;
+            z-index: 10;
+            cursor: pointer;
+            transition: opacity 0.6s ease, transform 0.5s ease;
+        }
+
+        .tela-inicio.fechada {
+            opacity: 0;
+            pointer-events: none;
+            transform: translateY(-20px);
+        }
+
+        .envelope {
+            width: 340px;
+            height: 210px;
+            background-color: #ffffff;
+            border-radius: 18px;
+            box-shadow: 2px 2px 15px rgba(74, 144, 226, 0.15);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: transform 0.3s ease;
+        }
+
+        .envelope:hover {
+            transform: scale(1.05);
+        }
+
+        .envelope::before {
+            content: '';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 0;
+            border-style: solid;
+            border-width: 0 25px 15px 25px;
+            border-color: transparent transparent #ffffff transparent;
+        }
+
+        .imagem-capa {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid #4a90e2;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: pointer;
+            background-color: #f0f6ff;
+        }
+
+        .imagem-capa:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(74, 144, 226, 0.4);
+        }
+
+        .conteudo {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            padding: 30px 3%;
+            gap: 40px;
+        }
+
+        .conteudo.visivel {
+            display: flex;
+        }
+
+        .pagina {
+            background-color: #ffffff;
+            width: 100%;
+            max-width: 1300px;
+            padding: 50px 80px;
+            border-radius: 14px;
+            box-shadow: 2px 2px 15px rgba(74, 144, 226, 0.15);
+            line-height: 1.85;
+            color: #333;
+        }
+
+        .calendario {
+            width: 220px;
+            margin: 0 auto 40px auto;
+            text-align: center;
+            border: 2px solid #4a90e2;
+            border-radius: 12px;
+            padding: 15px 10px;
+            background-color: #f0f6ff;
+        }
+
+        .calendario-mes {
+            font-size: 18px;
+            font-weight: bold;
+            color: #4a90e2;
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .calendario-dias-semana {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            margin-bottom: 8px;
+            font-size: 12px;
+            font-weight: 600;
+            color: #666;
+        }
+
+        .calendario-dias {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            font-size: 14px;
+        }
+
+        .dia {
+            padding: 6px 4px;
+            border-radius: 6px;
+            transition: all 0.2s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 32px;
+        }
+
+        .dia-vazio {
+            visibility: hidden;
+        }
+
+        .dia.destaque {
+            border: 2px solid #4a90e2;
+            border-radius: 50%;
+            width: 32px;
+            height: 32px;
+            padding: 0;
+            color: inherit;
+            font-weight: normal;
+            font-size: 14px;
+            transform: none;
+            box-shadow: none;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .pagina p {
+            margin-bottom: 30px;
+            font-size: 16.5px;
+            text-align: justify;
+        }
+
+        .destaque {
+            font-weight: bold;
+            color: #4a90e2;
+            font-size: 26px;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 40px;
+            letter-spacing: 1.5px;
+            line-height: 1.8;
+        }
+
+        .ps {
+            font-style: italic;
+            color: #5b9bd5;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            text-align: left;
+            font-size: 15px;
+            line-height: 2.0;
+        }
+
+        .assinatura {
+            text-align: right;
+            margin-top: 30px;
+            font-size: 17px;
+            color: #4a90e2;
+            line-height: 2.0;
+        }
+
+        .indicador-pagina {
+            text-align: center;
+            color: #888;
+            font-size: 13px;
+            margin-top: 10px;
+        }
+
+        @media (max-width: 768px) {
+            .pagina {
+                padding: 30px 20px;
+            }
+            .pagina p {
+                font-size: 15.5px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="tela-inicio" onclick="abrirCarta()">
+        <div class="envelope">
+            <img 
+                src="cachorro.jpg" 
+                alt="Clique para abrir" 
+                class="imagem-capa"
+            >
+        </div>
+    </div>
+
+    <div class="conteudo" id="conteudo">
+        <div class="pagina">
+            <div class="calendario">
+                <div class="calendario-mes">SETEMBRO / 2026</div>
+                <div class="calendario-dias-semana">
+                    <div>Dom</div><div>Seg</div><div>Ter</div><div>Qua</div><div>Qui</div><div>Sex</div><div>Sáb</div>
+                </div>
+                <div class="calendario-dias">
+                    <div class="dia-vazio"></div><div class="dia-vazio"></div>
+                    <div class="dia">1</div><div class="dia">2</div><div class="dia">3</div><div class="dia">4</div>
+                    <div class="dia destaque">5</div>
+                    <div class="dia">6</div><div class="dia">7</div><div class="dia">8</div><div class="dia">9</div><div class="dia">10</div><div class="dia">11</div><div class="dia">12</div>
+                    <div class="dia">13</div><div class="dia">14</div><div class="dia">15</div><div class="dia">16</div><div class="dia">17</div><div class="dia">18</div><div class="dia">19</div>
+                    <div class="dia">20</div><div class="dia">21</div><div class="dia">22</div><div class="dia">23</div><div class="dia">24</div><div class="dia">25</div><div class="dia">26</div>
+                    <div class="dia">27</div><div class="dia">28</div><div class="dia">29</div><div class="dia">30</div>
+                    <div class="dia-vazio"></div><div class="dia-vazio"></div>
+                </div>
+            </div> 
+
+            <img src="carrinho2.png" alt="Imagem" style="display: block; margin: 25px auto; width: 150px; height: 150px; object-fit: contain; border: none;">
+
+            <p>Oii meu amor, eu até poderia ter escrito no papel, mas eu (na função de namorada estudante de tecnologia) prefiro assim, fora que eu to amando fazer cartinha pra você. Bom, é a primeira vez que eu te desejo feliz aniversário KKKKKKKKKKKK então é com muito muito muito muito amor mesmo, de todo o meu coração. Lá no papel, eu coloquei as 5 coisas que eu <span class="palavra-amo">amo</span> em você, não é? Mas lógico que não eram só aquelas, até porque eu também <span class="palavra-amo">amo</span> seu cabelo, eu <span class="palavra-amo">amo</span> seu caráter, eu <span class="palavra-amo">amo</span> você, eu <span class="palavra-amo">amo</span> seu nome, eu <span class="palavra-amo">amo</span> sua personalidade, eu <span class="palavra-amo">amo</span> sua risada, eu <span class="palavra-amo">amo</span> seu sorriso, eu <span class="palavra-amo">amo</span> sua voz, eu <span class="palavra-amo">amo</span> suas mãos, eu <span class="palavra-amo">amo</span> seu abraço, eu <span class="palavra-amo">amo</span> sua alegria, eu <span class="palavra-amo">amo</span> seu rosto, eu <span class="palavra-amo">amo</span> sua gentileza, eu <span class="palavra-amo">amo</span> seu carinho, eu <span class="palavra-amo">amo</span> nossa amizade, eu <span class="palavra-amo">amo</span> sua beleza, eu <span class="palavra-amo">amo</span> seu amor, eu <span class="palavra-amo">amo</span> seus abraços, eu <span class="palavra-amo">amo</span> suas mensagens, eu <span class="palavra-amo">amo</span> ouvir sua voz, eu <span class="palavra-amo">amo</span> receber fotos suas, eu <span class="palavra-amo">amo</span> seu estilo, eu <span class="palavra-amo">amo</span> seu perdão, eu <span class="palavra-amo">amo</span> sua perfeição, eu <span class="palavra-amo">amo</span> o tempo que passamos juntos, eu <span class="palavra-amo">amo</span> as memórias que criamos, eu <span class="palavra-amo">amo</span> seu som, eu <span class="palavra-amo">amo</span> assistir aos vídeos que você me manda, eu <span class="palavra-amo">amo</span> como você faz piadas quando estamos juntos, eu <span class="palavra-amo">amo</span> tudo que fazemos juntos, eu <span class="palavra-amo">amo</span> como você me faz feliz em segundos, eu <span class="palavra-amo">amo</span> a maneira como você pode amar alguém como eu, eu <span class="palavra-amo">amo</span> como posso conversar com você por horas e ainda assim não ficar entediada, eu <span class="palavra-amo">amo</span> a forma como nos conhecemos em um lugar e agora estamos tão juntos, eu <span class="palavra-amo">amo</span> pensar em você, eu <span class="palavra-amo">amo</span> seu cheiro, eu <span class="palavra-amo">amo</span> sua força (🫦), eu <span class="palavra-amo">amo</span> sua inteligência, eu <span class="palavra-amo">amo</span> sua paixão, eu <span class="palavra-amo">amo</span> sua criatividade, eu <span class="palavra-amo">amo</span> sua paciência, eu <span class="palavra-amo">amo</span> sua positividade, eu <span class="palavra-amo">amo</span> sua confiança, eu <span class="palavra-amo">amo</span> como posso ser eu mesma perto de você, eu <span class="palavra-amo">amo</span> como posso ouvir você reclamar sem ficar irritada, eu <span class="palavra-amo">amo</span> meus sonhos com você, eu <span class="palavra-amo">amo</span> o fato de não haver nenhuma desvantagem em você, eu <span class="palavra-amo">amo</span> como me sinto segura perto de você, eu <span class="palavra-amo">amo</span> como você é confiável, eu <span class="palavra-amo">amo</span> como você sempre ilumina meu dia, eu <span class="palavra-amo">amo</span> como você está constantemente na minha mente, eu <span class="palavra-amo">amo</span> como você é incrível.</p>
+
+            <p class="indicador-pagina">— 1 —</p>
+        </div>
+
+        <div class="pagina">
+            <p>Eu <span class="palavra-amo">amo</span> como posso confiar meus segredos a você, eu <span class="palavra-amo">amo</span>... bem, você é obviamente LINDO!! (gostaria de deixar isso nítido aqui), eu <span class="palavra-amo">amo</span> como você pode me animar, eu <span class="palavra-amo">amo</span> como você é adorável, eu <span class="palavra-amo">amo</span> seu humor, eu <span class="palavra-amo">amo</span> como você é a definição de perfeição!, eu <span class="palavra-amo">amo</span> como sinto que sou capaz de desabafar com você sem me sentir mal, eu <span class="palavra-amo">amo</span> como você me apoia, eu <span class="palavra-amo">amo</span> como você é honesto, eu <span class="palavra-amo">amo</span> como você traz um enorme sorriso ao meu rosto, eu <span class="palavra-amo">amo</span> como você me faz sentir como se eu fosse alguém importante, eu <span class="palavra-amo">amo</span> como você nunca desiste facilmente, eu <span class="palavra-amo">amo</span> como você está sempre lá, eu <span class="palavra-amo">amo</span> como você ama meu verdadeiro eu, eu <span class="palavra-amo">amo</span> como você é lindo, eu <span class="palavra-amo">amo</span> como você é precioso, eu <span class="palavra-amo">amo</span> como você merece o UNIVERSO, eu <span class="palavra-amo">amo</span> como você é a luz para a minha escuridão, eu <span class="palavra-amo">amo</span> como apenas um “vamo se ver?” já me parece a melhor coisa do mundo, eu <span class="palavra-amo">amo</span> como você é literalmente um anjo enviado do céu, eu <span class="palavra-amo">amo</span> te chamar de apelidos, eu <span class="palavra-amo">amo</span> como você é tão amoroso, eu <span class="palavra-amo">amo</span> como às vezes você é mau, mas eu sei que você nunca falaria sério, eu <span class="palavra-amo">amo</span> como você é tão legal, eu <span class="palavra-amo">amo</span> como você é super engraçado, eu <span class="palavra-amo">amo</span> como eu te amo de todo o coração e sei que você também me ama, eu <span class="palavra-amo">amo</span> como sinto sua falta a cada segundo que eu estou longe de você, eu <span class="palavra-amo">amo</span> nossas mensagens de boa noite todos os dias, <span class="palavra-amo">amo</span> ter alguem para avisar que to saindo e chegando, eu <span class="palavra-amo">amo</span> como você é tão alegre, eu <span class="palavra-amo">amo</span> como tenho sorte de ter você na minha vida, eu <span class="palavra-amo">amo</span> como você é a melhor pessoa que eu já conheci, eu <span class="palavra-amo">amo</span> como você é super talentoso, eu <span class="palavra-amo">amo</span> como você me faz esquecer dos meus problemas, eu <span class="palavra-amo">amo</span> como você é a pessoa que eu mais vou amar em toda a minha vida, eu <span class="palavra-amo">amo</span> falar que você é perfeito, eu <span class="palavra-amo">amo</span> como tudo em você é lindo.</p>
+
+            <p class="destaque">EU. AMO. VOCÊ. SÓ. VOCÊ.</p>
+
+            <p class="ps">p.s: Eu também <span class="palavra-amo">amo</span> dormir com o ursinho, <span class="palavra-amo">amo</span> escrever teu nome em post-it, <span class="palavra-amo">amo</span> escrever tua inicial na minha mão. <span class="palavra-amo">Amo</span> tudo que se refere a você.</p>
+
+            <p class="assinatura">Com todo o amor do mundo, feliz aniversário, meu amor. 💗</p>
+
+            <p class="indicador-pagina">— 2 —</p>
+        </div>
+    </div>
+
+    <script>
+        function abrirCarta() {
+            document.querySelector('.tela-inicio').classList.add('fechada');
+            document.getElementById('conteudo').classList.add('visivel');
+            document.body.style.backgroundColor = '#f0f6ff';
+        }
+    </script>
+
+</body>
+</html>
